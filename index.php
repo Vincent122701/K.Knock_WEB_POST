@@ -9,8 +9,7 @@ try {
     //pdo(PHP가 MYSQL 서버와 연결되어있는 통로 config/db.php 연결)
     $stmt = $pdo->query("SELECT * FROM posts ORDER BY id DESC");
     //stmt에게 결과를 배열로 한번에 전부 반환하게함
-    $posts = $stmt->fetchAll();
-} catch (PDOException $e) {
+    $posts = $stmt->fetchAll();} catch (PDOException $e) {
     //위 과정에서 에러 발생하면 프로세서 중단 및 에러 메세지 출력
     die("오류 발생: " . $e->getMessage());
 }
@@ -19,38 +18,54 @@ try {
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>게시판</title>
+    <title>게시판 구현하기</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .welcome-container {
+            text-align: center;
+            background: white;
+            padding: 50px 80px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #718096;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3182ce;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #2b6cb0;
+        }
+    </style>
 </head>
 <body>
-    <h2>📋 게시글 목록</h2>
-    <a href="posts/write.php"><button>📝 새 글 쓰기</button></a>
-    <hr>
 
-    <?php if (empty($posts)): ?>
-        <p>아직 등록된 게시글이 없습니다.</p>
-    <?php else: ?>
-        <table border="1" cellpadding="5" cellspacing="0">
-            <thead>
-                <tr>
-                    <th width="50">번호</th>
-                    <th width="300">제목</th>
-                    <th width="150">작성일</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($posts as $post): ?>
-                    <tr>
-                        <td><?= $post['id'] ?></td>
-                        <td>
-                            <a href="posts/view.php?id=<?= $post['id'] ?>">
-                                <?= htmlspecialchars($post['title']) ?>
-                            </a>
-                        </td>
-                        <td><?= $post['created_at'] ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php endif; ?>
+    <div class="welcome-container">
+        <h1>K.Knock first Website</h1>
+        <a href="posts/list.php" class="btn">📋 게시판 들어가기</a>
+    </div>
+
 </body>
 </html>
