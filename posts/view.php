@@ -5,6 +5,10 @@ require_once '../config/db.php';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 try {
+
+    //해당 id를 가진 게시글의 조회수를 1 증가시키는 쿼리 준비 및 실행
+    $stmt_views = $pdo->prepare("UPDATE posts SET views = views + 1 WHERE id = ?");
+    $stmt_views->execute([$id]);
     //해당 id를 가진 게시글 하나만 DB에서 쿼리
     $stmt = $pdo->prepare("SELECT * FROM posts WHERE id = ?");
     $stmt->execute([$id]);
@@ -51,7 +55,12 @@ try {
 
     <div class="btn-group">
         <a href="list.php" class="btn btn-secondary">📋 목록으로</a>
-        <span style="color: #cbd5e0; line-height: 40px;">개발 공부 중 🚀</span>
+
+	<a href="pass_check.php?action=edit&id=<?php echo $id; ?>">수정</a>
+    	
+	<a href="pass_check.php?action=delete&id=<?php echo $id; ?>">삭제</a>
+        
+	<span style="color: #cbd5e0; line-height: 40px;">게시판 구현</span>
     </div>
 </div>
 

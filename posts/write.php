@@ -114,21 +114,25 @@
 <div class="container">
     <div class="write-card">
         <h2>📝 새 글 작성</h2>
-        
+
         <form action="write_process.php" method="POST">
             <div class="form-group">
                 <label for="username">작성자</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="이름을 입력하세요" required>
+                <input type="text" id="username" name="username" class="form-control" required>
             </div>
 
             <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="수정/삭제 시 필요" required>
+            </div>
+            <div class="form-group">
                 <label for="title">제목</label>
-                <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요" required>
+                <input type="text" id="title" name="title" class="form-control" required>
             </div>
 
             <div class="form-group">
                 <label for="content">본문</label>
-                <textarea id="content" name="content" class="form-control" rows="10" placeholder="내용을 입력하세요" required></textarea>
+                <textarea id="content" name="content" class="form-control" required></textarea>
             </div>
 
             <hr class="divider">
