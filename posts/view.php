@@ -286,7 +286,7 @@ try {
         </form>
     </div>
 
-    <div class="comment-card">
+<div class="comment-card">
         <div class="comment-title">댓글 목록</div>
         
         <?php
@@ -296,23 +296,19 @@ try {
             foreach ($comments as $comment) {
                 ?>
                 <div class="comment-item">
-		<div class="comment-item-header">
-    			<span class="comment-author"><?php echo htmlspecialchars($comment['username']); ?></span>
-    
-    			<div style="display: flex; gap: 10px; align-items: center;">
-        			<span class="comment-date"><?php echo $comment['created_at']; ?></span>
-        
-        			<a href="comment_pass.php?action=edit&post_id=<?php echo $id; ?>&comment_id=<?php echo $comment['id']; ?>" style="font-size: 12px; color: #4abc73; text-decoration: none; font-weight: 600;">수정</a>
-        
-        			<a href="comment_pass.php?action=delete&post_id=<?php echo $id; ?>&comment_id=<?php echo $comment['id']; ?>" style="font-size: 12px; color: #e53e3e; text-decoration: none; font-weight: 600;">삭제</a>
-    			</div>
-		</div>
+                    <div class="comment-item-header">
+                        <span class="comment-author"><?php echo htmlspecialchars($comment['username']); ?></span>
+                        
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <span class="comment-date"><?php echo $comment['created_at']; ?></span>
+                            <a href="comment_pass.php?action=edit&post_id=<?php echo $id; ?>&comment_id=<?php echo $comment['id']; ?>" style="font-size: 12px; color: #4abc73; text-decoration: none; font-weight: 600;">수정</a>
+                            <a href="comment_pass.php?action=delete&post_id=<?php echo $id; ?>&comment_id=<?php echo $comment['id']; ?>" style="font-size: 12px; color: #e53e3e; text-decoration: none; font-weight: 600;">삭제</a>
+                        </div>
+                    </div>
+                    <p class="comment-body"><?php echo htmlspecialchars($comment['content']); ?></p>
+                </div>
                 <?php
             }
         }
         ?>
     </div>
-
-</div>
-</body>
-</html>
